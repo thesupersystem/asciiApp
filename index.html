@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Webcam ASCII Effect</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: #000;
+            color: #fff;
+        }
+
+        video, canvas {
+            display: none;
+        }
+
+        pre {
+            font-family: monospace;
+            line-height: 7px;
+            font-size: 7px;
+            color: white;
+            text-align: center;
+        }
+
+        button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        #qrcode {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <pre id="ascii"></pre>
+    <video id="video" autoplay></video>
+    <canvas id="canvas"></canvas>
+    <button id="snapshotButton">Take Snapshot</button>
+    <div id="qrcode"></div>
+
+    <script src="ascii.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+</body>
+</html>
