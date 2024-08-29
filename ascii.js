@@ -54,13 +54,18 @@ snapshotButton.addEventListener('click', () => {
     const asciiContent = ascii.textContent;
     const lines = asciiContent.split('\n');
 
-    // Create a new canvas to draw the ASCII art as an image
+    // Calculate the width and height based on the ASCII art
+    const fontSize = 10; // Adjust font size to match the ASCII art size
+    const canvasWidth = lines[0].length * fontSize;
+    const canvasHeight = lines.length * fontSize;
+
+    // Create a new canvas with the correct dimensions
     const outputCanvas = document.createElement('canvas');
     const outputCtx = outputCanvas.getContext('2d');
-    const fontSize = 10; // Adjust font size to match the ASCII art size
-    outputCanvas.width = lines[0].length * fontSize;
-    outputCanvas.height = lines.length * fontSize;
+    outputCanvas.width = canvasWidth;
+    outputCanvas.height = canvasHeight;
 
+    // Fill the background with black and draw the ASCII art
     outputCtx.fillStyle = 'black';
     outputCtx.fillRect(0, 0, outputCanvas.width, outputCanvas.height);
 
@@ -70,25 +75,19 @@ snapshotButton.addEventListener('click', () => {
         outputCtx.fillText(line, 0, (i + 1) * fontSize);
     });
 
+    // Generate a unique filename using the current timestamp
+    const timestamp = new Date().toISOString().replace(/[-:]/g, '').replace(/\..*$/, '');
+    const filename = `ascii_snapshot_${timestamp}.png`;
+
     // Convert the canvas to a PNG and trigger download
     outputCanvas.toBlob(blob => {
         const url = URL.createObjectURL(blob);
         const a = document.createElement('a');
         a.href = url;
-        a.download = 'ascii_snapshot.png';
+        a.download = filename;
         a.click();
-
-        // Generate QR code for the image download link
-        qrcodeDiv.innerHTML = ''; // Clear previous QR code
-        new QRCode(qrcodeDiv, {
-            text: url,
-            width: 128,
-            height: 128,
-            colorDark: "#ffffff",
-            colorLight: "#000000",
-            correctLevel: QRCode.CorrectLevel.H
-        });
 
         URL.revokeObjectURL(url); // Clean up the URL object
     });
 });
+
