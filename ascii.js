@@ -2,7 +2,7 @@ const canvas = document.getElementById('canvas');
 const ctx = canvas.getContext('2d');
 const ascii = document.getElementById('ascii');
 
-const asciiChars = ['@', '#', 'S', '%', '?', '*', '+', ';', ':', ',', '.'];
+const asciiChars = ['I', 'D', 'S', 'E', 'A', '*', '+', ';', ':', ',', '.'];
 
 video.addEventListener('play', () => {
     function drawFrame() {
@@ -24,7 +24,7 @@ video.addEventListener('play', () => {
                     const g = data[offset + 1];
                     const b = data[offset + 2];
 
-                    const brightness = (r + g + b) / 3;
+                    const brightness = (r + g + b) / 4;
                     const charIndex = Math.floor((brightness / 255) * (asciiChars.length - 1));
                     asciiImage += asciiChars[charIndex];
                 }
