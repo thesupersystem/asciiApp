@@ -55,7 +55,7 @@ snapshotButton.addEventListener('click', () => {
     const lines = asciiContent.split('\n');
 
     // Calculate the width and height based on the ASCII art
-    const fontSize = 10; // Adjust font size to match the ASCII art size
+    const fontSize = 20; // Adjust font size to match the ASCII art size
     const canvasWidth = lines[0].length * fontSize;
     const canvasHeight = lines.length * fontSize;
 
