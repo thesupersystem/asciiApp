@@ -1,8 +1,19 @@
 const canvas = document.getElementById('canvas');
 const ctx = canvas.getContext('2d');
 const ascii = document.getElementById('ascii');
-
+const video = document.getElementById('video');
 const asciiChars = ['I', 'D', 'S', 'E', 'A', '*', '+', ';', ':', ',', '.'];
+
+
+
+navigator.mediaDevices.getUserMedia({ video: true })
+    .then(stream => {
+        video.srcObject = stream;
+    })
+    .catch(err => {
+        console.error("Error accessing the webcam:", err);
+    });
+
 
 video.addEventListener('play', () => {
     function drawFrame() {
