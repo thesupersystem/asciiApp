@@ -28,14 +28,14 @@ video.addEventListener('play', () => {
             const data = imageData.data;
 
             let asciiImage = '';
-            for (let y = 0; y < canvas.height; y += 10) { // Adjust the step for more or less detail
+            for (let y = 0; y < canvas.height; y += 5) { // Adjust the step for more or less detail
                 for (let x = 0; x < canvas.width; x += 5) { // Adjust the step for more or less detail
                     const offset = (y * canvas.width + x) * 4;
                     const r = data[offset];
                     const g = data[offset + 1];
                     const b = data[offset + 2];
 
-                    const brightness = (r + g + b) / 4;
+                    const brightness = (r + g + b) / 2;
                     const charIndex = Math.floor((brightness / 255) * (asciiChars.length - 1));
                     asciiImage += asciiChars[charIndex];
                 }
